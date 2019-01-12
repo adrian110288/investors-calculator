@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<import type="com.adrianlesniak.investorscalculator.Converter" />
+
+		<variable
+			name="vm"
+			type="com.adrianlesniak.investorscalculator.NewCalculationViewModel" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/constraintLayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingLeft="8dp"
+		android:paddingRight="8dp"
+		app:layout_constraintBottom_toTopOf="@+id/nav_view"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="1.0">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/final_sum"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="8dp"
+			android:layout_marginEnd="8dp"
+			android:text="@{vm.formattedTotalValue}"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="£1677.99" />
+
+		<!--Lump sum-->
+		<studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+			android:id="@+id/textFieldBoxes5"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			app:labelText="@string/field_title_lump_sum"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="1.0"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/final_sum">
+
+			<studio.carbonylgroup.textfieldboxes.ExtendedEditText
+				android:id="@+id/lump_sum_edit_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:inputType="number|numberDecimal"
+				android:text="@={Converter.bigDecimalToString(vm.lumpSum)}" />
+
+		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+		<!--Monthly contributions-->
+		<studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+			android:id="@+id/textFieldBoxes6"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			app:labelText="@string/field_title_monthly_contributions"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes5">
+
+			<studio.carbonylgroup.textfieldboxes.ExtendedEditText
+				android:id="@+id/monthly_contributions_edit_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:inputType="number|numberDecimal"
+				android:text="@={Converter.bigDecimalToString(vm.monthlyContributions)}" />
+
+		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+		<!--Years to invest-->
+		<studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+			android:id="@+id/textFieldBoxes7"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			app:labelText="@string/field_title_years_to_invest"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes6">
+
+			<studio.carbonylgroup.textfieldboxes.ExtendedEditText
+				android:id="@+id/years_to_invest_edit_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@={vm.yearsToInvest}" />
+
+		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+		<!--Average yield-->
+		<studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+			android:id="@+id/textFieldBoxes8"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			app:labelText="@string/field_title_average_returns"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes7">
+
+			<studio.carbonylgroup.textfieldboxes.ExtendedEditText
+				android:id="@+id/average_returns_edit_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@={vm.averageReturns}" />
+
+		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:onClick="@{() -> vm.calculate()}"
+			android:text="Calculate"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes8" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

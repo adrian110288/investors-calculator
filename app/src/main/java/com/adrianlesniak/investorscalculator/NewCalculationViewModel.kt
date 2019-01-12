@@ -7,27 +7,31 @@ import androidx.lifecycle.ViewModel
 import java.math.BigDecimal
 import java.text.NumberFormat
 
-class MyViewModel : ViewModel() {
+class NewCalculationViewModel : ViewModel() {
 
     val lumpSum = MutableLiveData<BigDecimal>()
     val monthlyContributions = MutableLiveData<BigDecimal>()
+
+    //    TODO: Convert to Int type
     val yearsToInvest = MutableLiveData<String>()
+
+    //    TODO: Convert to Int type
     val averageReturns = MutableLiveData<String>()
 
     private val _totalValue = MutableLiveData<BigDecimal>()
+    val formattedTotalValue: LiveData<String> =
+        Transformations.map(_totalValue) {
 
-    val formattedTotalValue: LiveData<String> = Transformations.map(_totalValue) {
-
-        //        inject
-        val numberFormat = NumberFormat.getCurrencyInstance()
-
-        numberFormat.format(it)
-    }
+            // TODO Inject
+            val numberFormat = NumberFormat.getCurrencyInstance()
+            numberFormat.format(it)
+        }
 
     init {
         _totalValue.value = BigDecimal.ZERO
     }
 
+    //    TODO: combineLatest with LiveData
     fun calculate() {
 
         val lumpSum = lumpSum.value ?: BigDecimal.ZERO
