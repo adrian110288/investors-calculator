@@ -5,11 +5,11 @@
 
 	<data>
 
-		<import type="com.adrianlesniak.investorscalculator.Converter" />
+		<import type="com.adrianlesniak.investorscalculator.utils.Converter" />
 
 		<variable
 			name="vm"
-			type="com.adrianlesniak.investorscalculator.NewCalculationViewModel" />
+			type="com.adrianlesniak.investorscalculator.ui.calculation.NewCalculationViewModel" />
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout

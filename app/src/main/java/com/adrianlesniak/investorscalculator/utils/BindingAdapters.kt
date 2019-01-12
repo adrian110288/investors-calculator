@@ -1,4 +1,4 @@
-package com.adrianlesniak.investorscalculator
+package com.adrianlesniak.investorscalculator.utils
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter

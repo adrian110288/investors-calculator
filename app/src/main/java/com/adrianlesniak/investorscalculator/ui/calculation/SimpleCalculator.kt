@@ -1,5 +1,7 @@
-package com.adrianlesniak.investorscalculator
+package com.adrianlesniak.investorscalculator.ui.calculation
 
+import com.adrianlesniak.investorscalculator.utils.Calculator
+import com.adrianlesniak.investorscalculator.utils.times
 import java.math.BigDecimal
 
 class SimpleCalculator private constructor(
@@ -18,7 +20,12 @@ class SimpleCalculator private constructor(
             averageReturns: Double
         ): SimpleCalculator {
 
-            return SimpleCalculator(lumpSum, monthlyContributions, yearsToInvest, averageReturns)
+            return SimpleCalculator(
+                lumpSum,
+                monthlyContributions,
+                yearsToInvest,
+                averageReturns
+            )
         }
     }
 

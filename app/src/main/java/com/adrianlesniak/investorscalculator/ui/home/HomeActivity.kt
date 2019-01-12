@@ -1,11 +1,13 @@
-package com.adrianlesniak.investorscalculator
+package com.adrianlesniak.investorscalculator.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.adrianlesniak.investorscalculator.R
+import com.adrianlesniak.investorscalculator.ui.calculation.NewCalculationActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {

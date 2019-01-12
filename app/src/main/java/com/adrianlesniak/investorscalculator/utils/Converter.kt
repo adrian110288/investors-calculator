@@ -1,4 +1,4 @@
-package com.adrianlesniak.investorscalculator
+package com.adrianlesniak.investorscalculator.utils
 
 import androidx.databinding.InverseMethod
 import java.math.BigDecimal

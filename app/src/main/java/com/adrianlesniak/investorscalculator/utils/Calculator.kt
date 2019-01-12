@@ -1,4 +1,4 @@
-package com.adrianlesniak.investorscalculator
+package com.adrianlesniak.investorscalculator.utils
 
 import java.math.BigDecimal
 

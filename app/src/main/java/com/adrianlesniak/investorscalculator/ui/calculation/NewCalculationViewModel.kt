@@ -1,9 +1,11 @@
-package com.adrianlesniak.investorscalculator
+package com.adrianlesniak.investorscalculator.ui.calculation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.adrianlesniak.investorscalculator.utils.toDoubleSafe
+import com.adrianlesniak.investorscalculator.utils.toIntSafe
 import java.math.BigDecimal
 import java.text.NumberFormat
 
@@ -39,13 +41,12 @@ class NewCalculationViewModel : ViewModel() {
         val yearsToInvest = yearsToInvest.value?.toIntSafe() ?: 0
         val averageReturns = averageReturns.value?.toDoubleSafe() ?: 0.0
 
-        val total = SimpleCalculator
-            .from(
-                lumpSum,
-                monthlyContributions,
-                yearsToInvest,
-                averageReturns
-            )
+        val total = SimpleCalculator.from(
+            lumpSum,
+            monthlyContributions,
+            yearsToInvest,
+            averageReturns
+        )
             .calculate()
 
         _totalValue.value = total
