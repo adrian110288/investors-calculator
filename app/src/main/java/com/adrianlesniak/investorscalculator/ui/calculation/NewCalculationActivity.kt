@@ -3,12 +3,16 @@ package com.adrianlesniak.investorscalculator.ui.calculation
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.adrianlesniak.investorscalculator.R
+import com.adrianlesniak.investorscalculator.R.layout
 import com.adrianlesniak.investorscalculator.data.Calculation
 import com.adrianlesniak.investorscalculator.databinding.ActivityNewCalculationBinding
+import kotlinx.android.synthetic.main.activity_new_calculation.*
 import java.math.BigDecimal
 
 class NewCalculationActivity : AppCompatActivity() {
@@ -37,8 +41,12 @@ class NewCalculationActivity : AppCompatActivity() {
         val binding: ActivityNewCalculationBinding =
             DataBindingUtil.setContentView(
                 this,
-                R.layout.activity_new_calculation
+                layout.activity_new_calculation
             )
+
+        setSupportActionBar(toolbar_main as Toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp)
 
         val vm = ViewModelProviders.of(this).get(NewCalculationViewModel::class.java)
         vm.setupWithCalculation(
@@ -53,5 +61,10 @@ class NewCalculationActivity : AppCompatActivity() {
 
         binding.setLifecycleOwner(this)
         binding.vm = vm
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.new_calculation_toolbar_menu, menu)
+        return true
     }
 }

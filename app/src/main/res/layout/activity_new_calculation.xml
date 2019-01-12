@@ -16,26 +16,28 @@
 		android:id="@+id/constraintLayout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:paddingLeft="8dp"
-		android:paddingRight="8dp"
+		android:fitsSystemWindows="true"
 		app:layout_constraintBottom_toTopOf="@+id/nav_view"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="1.0">
+		app:layout_constraintTop_toTopOf="parent">
+
+		<include
+			android:id="@+id/toolbar_main"
+			layout="@layout/view_toolbar_new_calculation"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/final_sum"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginEnd="8dp"
+			android:layout_marginTop="@dimen/vertical_edge_margin"
 			android:text="@{vm.formattedTotalValue}"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
 			tools:text="£1677.99" />
 
 		<!--Lump sum-->
@@ -44,8 +46,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:labelText="@string/field_title_lump_sum"
 			app:iconSignifier="@drawable/ic_lumpsum_black_24dp"
+			app:labelText="@string/field_title_lump_sum"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="1.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +68,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:labelText="@string/field_title_monthly_contributions"
 			app:iconSignifier="@drawable/ic_wallet_black_24dp"
+			app:labelText="@string/field_title_monthly_contributions"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -88,8 +90,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:labelText="@string/field_title_years_to_invest"
 			app:iconSignifier="@drawable/ic_time_black_24dp"
+			app:labelText="@string/field_title_years_to_invest"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -110,8 +112,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:labelText="@string/field_title_average_returns"
 			app:iconSignifier="@drawable/ic_trending_up_black_24dp"
+			app:labelText="@string/field_title_average_returns"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"

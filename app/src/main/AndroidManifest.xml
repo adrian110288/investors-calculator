@@ -11,7 +11,8 @@
 		android:theme="@style/AppTheme">
 		<activity
 			android:name=".ui.calculation.NewCalculationActivity"
-			android:launchMode="singleTask" />
+			android:launchMode="singleTask"
+			android:parentActivityName=".ui.home.HomeActivity" />
 
 		<activity
 			android:name=".ui.home.HomeActivity"
