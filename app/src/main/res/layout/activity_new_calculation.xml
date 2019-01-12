@@ -45,6 +45,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
 			app:labelText="@string/field_title_lump_sum"
+			app:iconSignifier="@drawable/ic_lumpsum_black_24dp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="1.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +55,7 @@
 				android:id="@+id/lump_sum_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:inputType="number|numberDecimal"
+				android:inputType="numberDecimal"
 				android:text="@={Converter.bigDecimalToString(vm.lumpSum)}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -66,6 +67,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
 			app:labelText="@string/field_title_monthly_contributions"
+			app:iconSignifier="@drawable/ic_wallet_black_24dp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +77,7 @@
 				android:id="@+id/monthly_contributions_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:inputType="number|numberDecimal"
+				android:inputType="numberDecimal"
 				android:text="@={Converter.bigDecimalToString(vm.monthlyContributions)}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -87,6 +89,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
 			app:labelText="@string/field_title_years_to_invest"
+			app:iconSignifier="@drawable/ic_time_black_24dp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +99,7 @@
 				android:id="@+id/years_to_invest_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:inputType="number"
 				android:text="@={vm.yearsToInvest}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -107,6 +111,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
 			app:labelText="@string/field_title_average_returns"
+			app:iconSignifier="@drawable/ic_trending_up_black_24dp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +121,7 @@
 				android:id="@+id/average_returns_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:inputType="numberDecimal|numberSigned"
 				android:text="@={vm.averageReturns}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>

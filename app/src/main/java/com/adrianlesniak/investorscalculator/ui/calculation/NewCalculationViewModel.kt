@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.adrianlesniak.investorscalculator.data.Calculation
 import com.adrianlesniak.investorscalculator.utils.toDoubleSafe
 import com.adrianlesniak.investorscalculator.utils.toIntSafe
 import java.math.BigDecimal
@@ -31,6 +32,15 @@ class NewCalculationViewModel : ViewModel() {
 
     init {
         _totalValue.value = BigDecimal.ZERO
+    }
+
+    fun setupWithCalculation(calculation: Calculation) {
+
+        lumpSum.value = calculation.lumpSum
+        monthlyContributions.value = calculation.monthlyContribution
+        yearsToInvest.value = calculation.yearsToInvest.toString()
+        averageReturns.value = calculation.averageReturns.toString()
+        _totalValue.value = calculation.total
     }
 
     //    TODO: combineLatest with LiveData

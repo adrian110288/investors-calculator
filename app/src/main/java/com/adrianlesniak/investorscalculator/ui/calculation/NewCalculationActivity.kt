@@ -7,18 +7,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.adrianlesniak.investorscalculator.R
+import com.adrianlesniak.investorscalculator.data.Calculation
 import com.adrianlesniak.investorscalculator.databinding.ActivityNewCalculationBinding
+import java.math.BigDecimal
 
 class NewCalculationActivity : AppCompatActivity() {
 
     companion object {
 
-        fun launch(parent: Activity) {
+        const val EXTRA_CALCULATION_ITEM = "EXTRA_CALCULATION_ITEM"
 
-            Intent(parent, NewCalculationActivity::class.java).also {
+        fun launch(parent: Activity, calculation: Calculation? = null) {
+
+            Intent(parent, NewCalculationActivity::class.java).apply {
+                putExtra(EXTRA_CALCULATION_ITEM, calculation)
+            }.also {
                 parent.startActivity(it)
             }
         }
+    }
+
+    private val calculation: Calculation by lazy {
+        intent.getParcelableExtra(EXTRA_CALCULATION_ITEM) ?: Calculation.newCalculation()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +41,15 @@ class NewCalculationActivity : AppCompatActivity() {
             )
 
         val vm = ViewModelProviders.of(this).get(NewCalculationViewModel::class.java)
+        vm.setupWithCalculation(
+            Calculation(
+                BigDecimal(2000),
+                BigDecimal(200),
+                9,
+                5.2f,
+                BigDecimal(12000)
+            )
+        )
 
         binding.setLifecycleOwner(this)
         binding.vm = vm
