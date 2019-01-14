@@ -10,6 +10,8 @@
 	<string name="field_title_monthly_contributions">Monthly contributions</string>
 	<string name="field_title_years_to_invest">Years to invest</string>
 	<string name="field_title_average_returns">Average returns</string>
+	<string name="field_amount_prefix">$\u0020</string>
+	<string name="field_percentage_suffix">\u0020%</string>
 
 	<!--Toolbar menu actions-->
 	<string name="edit_menu_action_title">Edit title</string>

@@ -46,7 +46,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:iconSignifier="@drawable/ic_lumpsum_black_24dp"
 			app:labelText="@string/field_title_lump_sum"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="1.0"
@@ -57,7 +56,8 @@
 				android:id="@+id/lump_sum_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:inputType="numberDecimal"
+				style="@style/EditFieldDecimalNumber"
+				app:prefix="@string/field_amount_prefix"
 				android:text="@={Converter.bigDecimalToString(vm.lumpSum)}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -68,7 +68,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:iconSignifier="@drawable/ic_wallet_black_24dp"
 			app:labelText="@string/field_title_monthly_contributions"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
@@ -79,7 +78,8 @@
 				android:id="@+id/monthly_contributions_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:inputType="numberDecimal"
+				style="@style/EditFieldDecimalNumber"
+				app:prefix="@string/field_amount_prefix"
 				android:text="@={Converter.bigDecimalToString(vm.monthlyContributions)}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -90,7 +90,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:iconSignifier="@drawable/ic_time_black_24dp"
 			app:labelText="@string/field_title_years_to_invest"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
@@ -101,7 +100,7 @@
 				android:id="@+id/years_to_invest_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:inputType="number"
+				style="@style/EditFieldWholeNumber"
 				android:text="@={vm.yearsToInvest}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -112,7 +111,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			app:iconSignifier="@drawable/ic_trending_up_black_24dp"
 			app:labelText="@string/field_title_average_returns"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
@@ -123,7 +121,8 @@
 				android:id="@+id/average_returns_edit_text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:inputType="numberDecimal|numberSigned"
+				style="@style/EditFieldDecimalSignedNumber"
+				app:suffix="@string/field_percentage_suffix"
 				android:text="@={vm.averageReturns}" />
 
 		</studio.carbonylgroup.textfieldboxes.TextFieldBoxes>

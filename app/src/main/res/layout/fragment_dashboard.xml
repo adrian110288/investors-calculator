@@ -23,6 +23,7 @@
 		android:layout_marginEnd="@dimen/horizontal_edge_margin"
 		android:layout_marginBottom="@dimen/vertical_edge_margin"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent" />
+		app:layout_constraintEnd_toEndOf="parent"
+		app:srcCompat="@drawable/ic_add_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
