@@ -1,33 +1,42 @@
 package com.adrianlesniak.investorscalculator.data
 
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.adrianlesniak.investorscalculator.data.db.CalculationsDao
 
-class CalculationsRepositoryImpl : CalculationsRepository {
+class CalculationsRepositoryImpl(private val calculationsDao: CalculationsDao) : CalculationsRepository {
 
-    val calculations = MutableLiveData<List<Calculation>>()
+    val allCalculations: LiveData<List<Calculation>> = calculationsDao.getAll()
 
+    //    TODO Not needed?
+    val singleCalculation = MutableLiveData<Calculation>()
 
-    override fun save(calculation: Calculation) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    @WorkerThread
+    override suspend fun save(calculation: Calculation) {
+        calculationsDao.save(calculation)
     }
 
     override fun getById(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        singleCalculation.value = calculationsDao.getById(id).value
     }
 
     override fun getAll() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        TODO
     }
 
-    override fun update(calculation: Calculation) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    @WorkerThread
+    override suspend fun update(calculation: Calculation) {
+        calculationsDao.update(calculation)
     }
 
-    override fun delete(calculation: Calculation) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    @WorkerThread
+    override suspend fun delete(calculation: Calculation) {
+        calculationsDao.delete(calculation)
     }
 
-    override fun deleteById(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    @WorkerThread
+    override suspend fun deleteById(id: String) {
+        calculationsDao.deleteById(id)
     }
 }
