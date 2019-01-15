@@ -22,7 +22,7 @@ data class Calculation(
 
         fun newCalculation() = Calculation(
             null,
-            "",
+            "dummy",
             BigDecimal.ZERO,
             BigDecimal.ZERO,
             0,

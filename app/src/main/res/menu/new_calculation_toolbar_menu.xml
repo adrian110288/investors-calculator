@@ -4,7 +4,14 @@
 	<item
 		android:id="@+id/toolbar_title_edit"
 		android:icon="@drawable/ic_mode_edit_black_24dp"
-		android:title="@string/edit_menu_action_title"
+		android:title="@string/menu_action_title"
 		app:showAsAction="ifRoom">
 	</item>
+	<item
+		android:id="@+id/toolbar_title_save"
+		android:icon="@drawable/ic_save_black_24dp"
+		android:title="@string/menu_action_save"
+		app:showAsAction="ifRoom">
+	</item>
+
 </menu>

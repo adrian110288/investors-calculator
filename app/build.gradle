@@ -31,6 +31,12 @@ androidExtensions {
     experimental = true
 }
 
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
@@ -43,7 +49,7 @@ dependencies {
 
 //    Libs
     implementation 'com.github.HITGIF:TextFieldBoxes:1.4.4'
-    
+
 //    Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
@@ -51,7 +57,11 @@ dependencies {
 
 //    Room
     implementation "androidx.room:room-runtime:2.1.0-alpha03"
-    kapt "androidx.room:room-compiler:2.1.0-alpha03" // use kapt for Kotlin
+    kapt "androidx.room:room-compiler:2.1.0-alpha03"
+
+//    Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.27.0-eap13"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.27.0-eap13"
 
 //    Tests
     testImplementation 'junit:junit:4.12'
