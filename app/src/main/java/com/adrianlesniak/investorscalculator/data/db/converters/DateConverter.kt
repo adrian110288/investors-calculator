@@ -3,7 +3,7 @@ package com.adrianlesniak.investorscalculator.data.db.converters
 import androidx.room.TypeConverter
 import java.util.Date
 
-object DateConverter {
+class DateConverter {
     @TypeConverter
     fun toDate(timestamp: Long): Date {
         return Date(timestamp)

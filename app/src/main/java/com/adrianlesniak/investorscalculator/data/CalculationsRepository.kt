@@ -2,7 +2,7 @@ package com.adrianlesniak.investorscalculator.data
 
 interface CalculationsRepository {
 
-    fun getById(id: String)
+    fun getById(id: Long)
 
     fun getAll()
 
@@ -12,6 +12,6 @@ interface CalculationsRepository {
 
     suspend fun delete(calculation: Calculation)
 
-    suspend fun deleteById(id: String)
+    suspend fun deleteById(id: Long)
 
 }

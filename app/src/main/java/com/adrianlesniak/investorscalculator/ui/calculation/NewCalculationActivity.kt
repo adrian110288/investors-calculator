@@ -14,6 +14,7 @@ import com.adrianlesniak.investorscalculator.data.Calculation
 import com.adrianlesniak.investorscalculator.databinding.ActivityNewCalculationBinding
 import kotlinx.android.synthetic.main.activity_new_calculation.*
 import java.math.BigDecimal
+import java.util.Date
 
 class NewCalculationActivity : AppCompatActivity() {
 
@@ -51,11 +52,14 @@ class NewCalculationActivity : AppCompatActivity() {
         val vm = ViewModelProviders.of(this).get(NewCalculationViewModel::class.java)
         vm.setupWithCalculation(
             Calculation(
+                null,
+                "dummy name",
                 BigDecimal(2000),
                 BigDecimal(200),
                 9,
                 5.2f,
-                BigDecimal(12000)
+                BigDecimal(12000),
+                Date()
             )
         )
 

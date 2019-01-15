@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.adrianlesniak.investorscalculator.App
 import com.adrianlesniak.investorscalculator.R
 import com.adrianlesniak.investorscalculator.ui.calculation.NewCalculationActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -22,15 +25,25 @@ class DashboardFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val dashboardViewModelFactory = (activity!!.application as App).dashboardViewModelFactory
+        viewModel = ViewModelProviders.of(this, dashboardViewModelFactory).get(DashboardViewModel::class.java)
+
+        val calculationsAdapter = CalculationsAdapter(context)
+        past_calculations_recycler_view.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = calculationsAdapter
+        }
 
         new_calculation_fab.setOnClickListener {
             activity?.let { NewCalculationActivity.launch(it) }
         }
+
+        viewModel.calculations.observe(this, Observer {
+            calculationsAdapter.addItems(it)
+        })
     }
 
 }

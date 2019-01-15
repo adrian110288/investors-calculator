@@ -2,23 +2,22 @@ package com.adrianlesniak.investorscalculator.data
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.adrianlesniak.investorscalculator.data.db.CalculationsDao
 
 class CalculationsRepositoryImpl(private val calculationsDao: CalculationsDao) : CalculationsRepository {
 
-    val allCalculations: LiveData<List<Calculation>> = calculationsDao.getAll()
-
-    //    TODO Not needed?
-    val singleCalculation = MutableLiveData<Calculation>()
+    val allCalculations: LiveData<List<Calculation>> = Transformations.map(calculationsDao.getAll()) {
+        it.map { entity -> entity.toCalculation() }
+    }
 
     @WorkerThread
     override suspend fun save(calculation: Calculation) {
-        calculationsDao.save(calculation)
+        calculationsDao.save(calculation.toEntity())
     }
 
-    override fun getById(id: String) {
-        singleCalculation.value = calculationsDao.getById(id).value
+    override fun getById(id: Long) {
+//        TODO
     }
 
     override fun getAll() {
@@ -27,16 +26,16 @@ class CalculationsRepositoryImpl(private val calculationsDao: CalculationsDao) :
 
     @WorkerThread
     override suspend fun update(calculation: Calculation) {
-        calculationsDao.update(calculation)
+        calculationsDao.update(calculation.toEntity())
     }
 
     @WorkerThread
     override suspend fun delete(calculation: Calculation) {
-        calculationsDao.delete(calculation)
+        calculationsDao.delete(calculation.toEntity())
     }
 
     @WorkerThread
-    override suspend fun deleteById(id: String) {
+    override suspend fun deleteById(id: Long) {
         calculationsDao.deleteById(id)
     }
 }

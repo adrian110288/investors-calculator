@@ -7,28 +7,27 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Update
-import com.adrianlesniak.investorscalculator.data.Calculation
 
 @Dao
 interface CalculationsDao {
 
     @Insert(onConflict = REPLACE)
-    fun save(calculation: Calculation)
+    fun save(calculation: CalculationEntity)
 
     @Query("SELECT * FROM Calculations WHERE uuid=:id")
-    fun getById(id: String): LiveData<Calculation>
+    fun getById(id: Long): LiveData<CalculationEntity>
 
     @Query("SELECT * FROM Calculations")
-    fun getAll(): LiveData<List<Calculation>>
+    fun getAll(): LiveData<List<CalculationEntity>>
 
     @Update(onConflict = REPLACE)
-    fun update(calculation: Calculation)
+    fun update(calculation: CalculationEntity)
 
     @Delete
-    fun delete(calculation: Calculation)
+    fun delete(calculation: CalculationEntity)
 
     @Query("DELETE FROM Calculations WHERE uuid=:id")
-    fun deleteById(id: String)
+    fun deleteById(id: Long)
 
 
 }
