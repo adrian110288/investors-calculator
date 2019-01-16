@@ -16,5 +16,6 @@
 	<!--Toolbar menu actions-->
 	<string name="menu_action_title">Edit title</string>
 	<string name="menu_action_save">Save calculation</string>
+	<string name="menu_action_pin">Pinned</string>
 
 </resources>
