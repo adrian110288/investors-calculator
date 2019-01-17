@@ -1,20 +1,24 @@
 package com.adrianlesniak.investorscalculator.ui.home.dashboard
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.adrianlesniak.investorscalculator.R
 import com.adrianlesniak.investorscalculator.data.Calculation
+import com.adrianlesniak.investorscalculator.databinding.ListItemCalculationBinding
+import com.adrianlesniak.investorscalculator.utils.AmountFormatter
 
-class CalculationsAdapter internal constructor(context: Context?) : RecyclerView.Adapter<CalculationsViewHolder>() {
+class CalculationsAdapter internal constructor(
+    private val layoutInflater: LayoutInflater,
+    private val amountFormatter: AmountFormatter,
+    private val vm: DashboardViewModel
+) : RecyclerView.Adapter<CalculationsViewHolder>() {
 
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var calculations = mutableListOf<Calculation>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalculationsViewHolder {
-        val itemView = inflater.inflate(R.layout.list_item_calculation, parent, false)
-        return CalculationsViewHolder(itemView)
+
+        val binding = ListItemCalculationBinding.inflate(layoutInflater, parent, false)
+        return CalculationsViewHolder(amountFormatter, vm, binding)
     }
 
     override fun getItemCount() = calculations.size

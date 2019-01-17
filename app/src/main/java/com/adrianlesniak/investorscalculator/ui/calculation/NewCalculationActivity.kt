@@ -65,7 +65,8 @@ class NewCalculationActivity : AppCompatActivity() {
                 9,
                 5.2f,
                 BigDecimal(12000),
-                Date()
+                Date(),
+                false
             )
         )
 

@@ -1,15 +1,24 @@
 package com.adrianlesniak.investorscalculator.ui.home.dashboard
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.adrianlesniak.investorscalculator.data.Calculation
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_item_calculation.*
+import com.adrianlesniak.investorscalculator.databinding.ListItemCalculationBinding
+import com.adrianlesniak.investorscalculator.utils.AmountFormatter
 
-class CalculationsViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-    LayoutContainer {
+class CalculationsViewHolder(
+    amountFormatter: AmountFormatter,
+    vm: DashboardViewModel,
+    private val binding: ListItemCalculationBinding
+) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    init {
+        binding.formatter = amountFormatter
+        binding.vm = vm
+    }
 
     fun bind(calculation: Calculation) {
-        calculation_total_tv.text = calculation.total.toString()
+        binding.calculation = calculation
+        binding.executePendingBindings()
     }
 }

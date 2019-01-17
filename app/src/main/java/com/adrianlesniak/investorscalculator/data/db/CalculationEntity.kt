@@ -19,7 +19,8 @@ data class CalculationEntity(
     val yearsToInvest: Int,
     val averageReturns: Float,
     val total: BigDecimal,
-    val createdAt: Date?
+    val createdAt: Date?,
+    val pinned: Boolean
 ) {
 
     fun toCalculation(): Calculation {
@@ -31,7 +32,8 @@ data class CalculationEntity(
             yearsToInvest,
             averageReturns,
             total,
-            createdAt
+            createdAt,
+            pinned
         )
     }
 }

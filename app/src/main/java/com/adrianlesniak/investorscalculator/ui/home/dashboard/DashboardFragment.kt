@@ -1,11 +1,7 @@
 package com.adrianlesniak.investorscalculator.ui.home.dashboard
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrianlesniak.investorscalculator.App
 import com.adrianlesniak.investorscalculator.R
 import com.adrianlesniak.investorscalculator.ui.calculation.NewCalculationActivity
+import com.adrianlesniak.investorscalculator.utils.AmountFormatter
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : Fragment() {
@@ -22,7 +19,14 @@ class DashboardFragment : Fragment() {
         fun newInstance() = DashboardFragment()
     }
 
-    private lateinit var viewModel: DashboardViewModel
+    private val viewModel: DashboardViewModel by lazy {
+        val dashboardViewModelFactory = (activity!!.application as App).dashboardViewModelFactory
+        ViewModelProviders.of(this, dashboardViewModelFactory).get(DashboardViewModel::class.java)
+    }
+
+    private val amountFormatter: AmountFormatter by lazy {
+        (activity!!.application as App).amountFormatter
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +41,7 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dashboardViewModelFactory = (activity!!.application as App).dashboardViewModelFactory
-        viewModel = ViewModelProviders.of(this, dashboardViewModelFactory).get(DashboardViewModel::class.java)
-
-        val calculationsAdapter = CalculationsAdapter(context)
+        val calculationsAdapter = CalculationsAdapter(layoutInflater, amountFormatter, viewModel)
         past_calculations_recycler_view.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = calculationsAdapter

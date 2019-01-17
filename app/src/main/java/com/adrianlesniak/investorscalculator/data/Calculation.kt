@@ -15,7 +15,8 @@ data class Calculation(
     val yearsToInvest: Int,
     val averageReturns: Float,
     val total: BigDecimal,
-    val createdAt: Date?
+    val createdAt: Date?,
+    val pinned: Boolean
 ) : Parcelable {
 
     companion object {
@@ -28,7 +29,8 @@ data class Calculation(
             0,
             0.0f,
             BigDecimal.ZERO,
-            null
+            null,
+            false
         )
     }
 
@@ -41,7 +43,8 @@ data class Calculation(
             yearsToInvest,
             averageReturns,
             total,
-            createdAt ?: Date()
+            createdAt ?: Date(),
+            pinned
         )
     }
 }
