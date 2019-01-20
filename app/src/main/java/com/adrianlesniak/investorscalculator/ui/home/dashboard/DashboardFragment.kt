@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adrianlesniak.investorscalculator.App
 import com.adrianlesniak.investorscalculator.R
+import com.adrianlesniak.investorscalculator.databinding.FragmentDashboardBinding
 import com.adrianlesniak.investorscalculator.ui.calculation.NewCalculationActivity
 import com.adrianlesniak.investorscalculator.utils.AmountFormatter
+import com.adrianlesniak.investorscalculator.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : Fragment() {
@@ -28,6 +30,14 @@ class DashboardFragment : Fragment() {
         (activity!!.application as App).amountFormatter
     }
 
+    private val calculationsAdapter: CalculationsAdapter by lazy {
+        CalculationsAdapter(
+            layoutInflater,
+            amountFormatter,
+            viewModel
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -35,30 +45,47 @@ class DashboardFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        return FragmentDashboardBinding.inflate(inflater, container, false)
+            .also { it.vm = viewModel }
+            .root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val calculationsAdapter = CalculationsAdapter(layoutInflater, amountFormatter, viewModel)
         past_calculations_recycler_view.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = calculationsAdapter
         }
 
-        new_calculation_fab.setOnClickListener {
-            activity?.let { NewCalculationActivity.launch(it) }
-        }
+        observe()
 
-        viewModel.calculations.observe(this, Observer {
-            calculationsAdapter.addItems(it)
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.dashboard_toolbar_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun observe() {
+
+        val owner = this
+
+        viewModel.apply {
+
+            addNewCalculationClickedEvent.observe(owner, EventObserver {
+                NewCalculationActivity.launch(activity)
+            })
+
+            calculationItemClickedEvent.observe(owner, EventObserver {
+                NewCalculationActivity.launch(activity, it)
+            })
+
+            calculations.observe(owner, Observer {
+                calculationsAdapter.addItems(it)
+            })
+        }
+
     }
 
 }

@@ -10,7 +10,6 @@ import com.adrianlesniak.investorscalculator.utils.toDoubleSafe
 import com.adrianlesniak.investorscalculator.utils.toIntSafe
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.android.Main
 import kotlinx.coroutines.launch
@@ -77,9 +76,10 @@ class NewCalculationViewModel(private val repository: CalculationsRepositoryImpl
         _totalValue.value = total
     }
 
-    fun saveCalculation() = scope.launch(Dispatchers.IO) {
+    fun saveCalculation() = scope.launch {
         val calculation = Calculation.newCalculation()
         repository.save(calculation)
+
     }
 
     override fun onCleared() {

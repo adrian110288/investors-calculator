@@ -19,63 +19,72 @@
             type="com.adrianlesniak.investorscalculator.data.Calculation" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
+        style="@style/CalculationListItemStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:paddingStart="@dimen/horizontal_edge_margin"
-        android:paddingTop="@dimen/vertical_edge_margin"
-        android:paddingEnd="@dimen/horizontal_edge_margin"
-        android:paddingBottom="@dimen/vertical_edge_margin">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/calculation_title_tv"
-            style="@style/CalculationListItemTitleStyle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:text="@{calculation.name}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Calculation title" />
+            android:background="?android:selectableItemBackground"
+            android:onClick="@{() -> vm.onCalculationItemClicked(calculation)}"
+            android:paddingStart="@dimen/horizontal_edge_margin"
+            android:paddingTop="@dimen/vertical_edge_margin"
+            android:paddingEnd="@dimen/horizontal_edge_margin"
+            android:paddingBottom="@dimen/vertical_edge_margin">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/calculation_total_tv"
-            style="@style/CalculationListItemTotalStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/horizontal_edge_margin"
-            android:text="@{formatter.format(calculation.total)}"
-            app:layout_constraintEnd_toStartOf="@+id/calculation_pin_iv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calculation_title_tv"
-            tools:text="£256,00.00" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/calculation_title_tv"
+                style="@style/CalculationListItemTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:text="@{calculation.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Calculation title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/calculation_summary_tv"
-            style="@style/CalculationListItemSummaryStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calculation_total_tv"
-            tools:text="£12k/£200pm/6 years/6.8%" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/calculation_total_tv"
+                style="@style/CalculationListItemTotalStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/horizontal_edge_margin"
+                android:text="@{formatter.format(calculation.total)}"
+                app:layout_constraintEnd_toStartOf="@+id/calculation_pin_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculation_title_tv"
+                tools:text="£256,00.00" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/calculation_pin_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
-            android:onClick="@{() -> vm.onPinClicked(calculation)}"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_pin_outline" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/calculation_summary_tv"
+                style="@style/CalculationListItemSummaryStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculation_total_tv"
+                tools:text="£12k/£200pm/6 years/6.8%" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/calculation_pin_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{() -> vm.onPinClicked(calculation)}"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_pin_outline" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </layout>

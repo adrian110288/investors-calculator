@@ -16,7 +16,7 @@ import com.adrianlesniak.investorscalculator.data.Calculation
 import com.adrianlesniak.investorscalculator.databinding.ActivityNewCalculationBinding
 import kotlinx.android.synthetic.main.activity_new_calculation.*
 import java.math.BigDecimal
-import java.util.Date
+import java.util.*
 
 class NewCalculationActivity : AppCompatActivity() {
 
@@ -26,13 +26,17 @@ class NewCalculationActivity : AppCompatActivity() {
 
         const val EXTRA_CALCULATION_ITEM = "EXTRA_CALCULATION_ITEM"
 
-        fun launch(parent: Activity, calculation: Calculation? = null) {
+        fun launch(parent: Activity?, calculation: Calculation? = null) {
 
-            Intent(parent, NewCalculationActivity::class.java).apply {
-                putExtra(EXTRA_CALCULATION_ITEM, calculation)
-            }.also {
-                parent.startActivity(it)
+            parent?.let {
+
+                val intent = Intent(it, NewCalculationActivity::class.java).apply {
+                    putExtra(EXTRA_CALCULATION_ITEM, calculation)
+                }
+
+                it.startActivity(intent)
             }
+
         }
     }
 

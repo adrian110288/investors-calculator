@@ -6,6 +6,7 @@
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
+		<item name="android:windowBackground">@color/windowBackground</item>
 	</style>
 
 	<style name="AppTheme.NoActionBar">
@@ -58,6 +59,10 @@
 	</style>
 
 	<!--Calculation item style-->
+
+	<style name="CalculationListItemStyle" parent="CardView.Light">
+		<item name="cardCornerRadius">0dp</item>
+	</style>
 
 	<style name="CalculationListItemTitleStyle" parent="TextAppearance.MaterialComponents.Subtitle2">
 		<item name="android:textColor">?attr/colorAccent</item>

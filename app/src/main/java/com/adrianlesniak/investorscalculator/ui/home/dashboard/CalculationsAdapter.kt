@@ -18,7 +18,7 @@ class CalculationsAdapter internal constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalculationsViewHolder {
 
         val binding = ListItemCalculationBinding.inflate(layoutInflater, parent, false)
-        return CalculationsViewHolder(amountFormatter, vm, binding)
+        return CalculationsViewHolder(binding, vm, amountFormatter)
     }
 
     override fun getItemCount() = calculations.size

@@ -6,9 +6,9 @@ import com.adrianlesniak.investorscalculator.databinding.ListItemCalculationBind
 import com.adrianlesniak.investorscalculator.utils.AmountFormatter
 
 class CalculationsViewHolder(
-    amountFormatter: AmountFormatter,
+    private val binding: ListItemCalculationBinding,
     vm: DashboardViewModel,
-    private val binding: ListItemCalculationBinding
+    amountFormatter: AmountFormatter
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
