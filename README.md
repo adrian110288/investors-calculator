@@ -1,4 +1,4 @@
-# Investors Calculator
+# Investors Calculator WIP
 
 App to help private investors understand rate of return on investments over a period of time.
 
